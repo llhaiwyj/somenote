@@ -1,8 +1,71 @@
  angular.module('textApp')
-  .controller('del', ['$scope','$http','$state','$cookies','$cookieStore',function ($scope,$http,$state,$cookies,$cookieStore) {
- $scope.removeCookieinfo= function () {
-                $cookieStore.remove('user');
-                
-                $state.go('index')
+ .controller('del', ['$scope','$http','$state','$stateParams','$cookieStore','$cookies',function ($scope,$http,$state,$stateParams,$cookieStore,$cookies) {
+  $scope.ji=$stateParams
+  $scope.add=function(e){
+		$scope.gb=e
+	}	
+  $scope.bao=function(){
+		$http({
+			url:"http://www.somenote.cn:1510/item",
+			method:"POST",
+			data:$scope.gb
+		}).success(function(e){
+			$scope.data.push($scope.gb)
+			$scope.gb={}
+		})
+	}
+	$scope.shan=function(e){
+		$http({
+			url:"http://www.somenote.cn:1510/item/"+e.id,
+			method:"delete"
+		}).success(function(){
+			$scope.data.splice($scope.data.indexOf(e),1)
+		})
+	}
+	 $scope.xz=function(e){
+		$scope.jz=e
+	}	
+	$scope.qd=function(e){
+		$http({
+			url:"http://www.somenote.cn:1510/item",
+			method:"PUT",
+			data:$scope.jz
+		}).success(function(){
+			$scope.jz={}
+		})
+	}	
+    var num=0;
+	$scope.geng=function(){
+		num+=5;
+		$http({
+		url:"http://www.somenote.cn:1510/item",
+		method:"GET",
+		params:{"$skip":num,"$limit":4}
+	    }).success(function(e){
+		$scope.data=e
+	    });
+	}
+	$scope.shang=function(){
+		num-=5;
+		$http({
+		url:"http://www.somenote.cn:1510/item",
+		method:"GET",
+		params:{"$skip":num,"$limit":4}
+	    }).success(function(e){
+		$scope.data=e
+	    });
+	}
+  $http({
+		url:"http://www.somenote.cn:1510/item",
+		method:"get",
+		params:{"$skip":num,"$limit":5}
+	}).success(function(e){
+		$scope.data=e
+	})
+
+    $scope.removeCookieinfo=function(){
+    	  $cookieStore.remove('user');
+		  $state.go('index')
+
     }
  }])
