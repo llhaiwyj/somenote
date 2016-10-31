@@ -1,10 +1,12 @@
  angular.module('textApp')
  .controller('del', ['$scope','$http','$state','$stateParams','$cookieStore','$cookies',function ($scope,$http,$state,$stateParams,$cookieStore,$cookies) {
+ 	
   $scope.ji=$stateParams
   $scope.add=function(e){
 		$scope.gb=e
 	}	
   $scope.bao=function(){
+  	$scope.gb.uid=$cookieStore.get("lll")
 		$http({
 			url:"http://www.somenote.cn:1510/item",
 			method:"POST",
@@ -40,25 +42,29 @@
 		$http({
 		url:"http://www.somenote.cn:1510/item",
 		method:"GET",
-		params:{"$skip":num,"$limit":4}
+		params:{"$skip":num,"$limit":4,"uid":$cookieStore.get("lll")}
 	    }).success(function(e){
 		$scope.data=e
 	    });
 	}
 	$scope.shang=function(){
 		num-=5;
+		  if(num=0){
+	    	$('#sm').attr('disabled',"disabled")
+	    }
 		$http({
 		url:"http://www.somenote.cn:1510/item",
 		method:"GET",
-		params:{"$skip":num,"$limit":4}
+		params:{"$skip":num,"$limit":4,"uid":$cookieStore.get("lll")}
 	    }).success(function(e){
 		$scope.data=e
 	    });
+
 	}
   $http({
 		url:"http://www.somenote.cn:1510/item",
 		method:"get",
-		params:{"$skip":num,"$limit":5}
+		params:{"$skip":num,"$limit":4,"uid":$cookieStore.get("lll")}
 	}).success(function(e){
 		$scope.data=e
 	})

@@ -11,7 +11,10 @@ angular.module('textApp')
 		method:"post",
 		data:$scope.degdata
 	}).success(function(e){
-		$state.go('cont')
+		debugger
+
+		$cookieStore.put("lll",e.uid);
+		
 	    if($scope.check==true){
 	    	 $cookieStore.put("user",$scope.degdata);
 	    	 var expireDate = new Date();
@@ -21,7 +24,7 @@ angular.module('textApp')
 
 	    }
 	
-	   
+	   $state.go('cont')
 	  	
 	})
      }
