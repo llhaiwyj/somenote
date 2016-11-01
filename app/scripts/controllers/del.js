@@ -59,7 +59,6 @@
 	    }).success(function(e){
 		$scope.data=e
 	    });
-
 	}
   $http({
 		url:"http://www.somenote.cn:1510/item",

@@ -11,7 +11,7 @@ angular.module('textApp')
 		method:"post",
 		data:$scope.degdata
 	}).success(function(e){
-		debugger
+		
 
 		$cookieStore.put("lll",e.uid);
 		

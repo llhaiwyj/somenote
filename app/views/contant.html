@@ -2,14 +2,14 @@
 <div class="row" style="background:#666;">
   <div class="col-xs-4 col-sm-7 col-md-9" style="color:#556fb5;font-size:25px;">Somenote</div>
   <div class="col-xs-3 col-sm-6 col-md-8" style="margin-top:5px;">
-  	 <input type="text" class="modal-content" ng-model="title" style="width:100px;" placeholder="查找"/>
+  	 <input type="text" class="modal-content" ng-model="title" style="width:100px;"/>
 </div>
   
 
   <div class="col-xs-5 col-md-4">
   <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" style="background:#ccc;border:none;">Dropdown</button>
-  <ul class="dropdown-menu col-xs-12 col-md-4" role="menu" aria-labelledby="dropdownMenu1">
-    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">查找</a></li>
+  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+    <li role="presentation"><a role="menuitem" tabindex="-1" ng-click="find()">查找</a></li>
     <li role="presentation"><a role="menuitem" tabindex="-1" href="#">排序</a></li>
     <li role="presentation"><a role="menuitem" tabindex="-1" href="#" ng-click="removeCookieinfo()">退出登录</a></li>
   </ul>
